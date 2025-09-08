@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2023",
+    // lib 选项用于指定 TypeScript 编译时包含哪些内置类型声明文件，例如：
+    // "ES5" / "ES2015" / "ES2020" / "ESNext" → JS 语言标准
+    // "DOM" → 浏览器全局对象（document, console, location 等）
+    // "DOM.Iterable" → 支持 for...of document.querySelectorAll(...)
+    // "WebWorker" → Web Worker 环境
+    // "ScriptHost" → 脚本宿主环境（如 WSH）
+    // "ES2015.Promise" → 仅加载 Promise 类型
+    "lib": ["ES2023", "DOM"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
