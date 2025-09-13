@@ -1,0 +1,35 @@
+// 现代标准化
+@import "modern-normalize/modern-normalize.css";
+
+// 安全重置 + 表单/排版增强
+@import "sanitize.css";
+@import "sanitize.css/forms.css";
+@import "sanitize.css/typography.css";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fff;
+}
+
+#app {
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.center-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}

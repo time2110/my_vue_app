@@ -7,10 +7,10 @@ import type {
 import axios from "axios"
 
 // 响应数据格式（根据你的后端调整）
-export interface ApiResponse {
+export interface ApiResponse<T = any> {
   code: number
   message: string
-  data?: any
+  data?: T
 }
 
 // 创建 axios 实例
@@ -37,11 +37,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse<ApiResponse>) => {
     const res = response.data
-    console.log(res.data)
-
     if (res.code === 200) {
       return response
     }
+    ElMessage.error(res.message)
     return Promise.reject(new Error(res.message || "Error"))
   },
   (error) => {

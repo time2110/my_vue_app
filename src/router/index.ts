@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "Home",
-    component: () => import("@/components/Home.vue"),
+    component: () => import("@/views/Home.vue"),
     meta: { title: "首页", requiresAuth: true },
   },
   {
@@ -34,7 +34,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/Login",
     name: "Login",
-    component: () => import("@/components/Login.vue"),
+    component: () => import("@/views/user/Login.vue"),
     meta: { title: "登录" },
   },
 ]
