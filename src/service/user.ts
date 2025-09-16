@@ -1,5 +1,7 @@
 // src/service/user.ts
-import request, { type ApiResponse } from "@/api/request"
+
+import request from "@/utils/request"
+import type { ApiResponse } from "@/utils/request/errors/types"
 
 // 登录参数
 export interface LoginParams {
