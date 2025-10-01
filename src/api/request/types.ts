@@ -1,4 +1,3 @@
-// src/utils/request/errors/types.ts
 /**
  * 通用 API 响应结构
  */
@@ -17,15 +16,4 @@ export interface ApiError {
   message: string
   details?: any
   timestamp?: number
-}
-
-/**
- * 错误处理上下文
- */
-export interface ErrorContext {
-  url: string
-  method: string
-  status?: number
-  errorCode?: string | null
-  message?: string
 }

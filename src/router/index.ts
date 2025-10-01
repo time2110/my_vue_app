@@ -5,8 +5,8 @@ import { registerRouterGuards } from "./guards"
 // 定义路由类型（可选，但推荐 TS 项目使用）
 declare module "vue-router" {
   interface RouteMeta {
-    title?: string
-    requiresAuth?: Boolean
+    title?: string // 标题
+    requiresAuth?: Boolean // 是否需要认证
   }
 }
 

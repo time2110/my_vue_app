@@ -1,7 +1,7 @@
 // src/service/user.ts
 
-import request from "@/utils/request"
-import type { ApiResponse } from "@/utils/request/errors/types"
+import request from "../request"
+import type { ApiResponse } from "../request/types"
 
 // 登录参数
 export interface LoginParams {
@@ -24,11 +24,18 @@ export interface UserInfo {
 }
 
 // 登录 API
-export function login(params: LoginParams) {
+function login(params: LoginParams) {
   return request.post<ApiResponse<LoginResponse>>("/user/login", params)
 }
 
 // 获取用户信息
-export function getUserInfo() {
+function getUserInfo() {
   return request.get<ApiResponse<UserInfo>>("/user/info")
 }
+
+// 登出 API
+function logout() {
+  return request.post<ApiResponse<null>>("/user/logout")
+}
+
+export const userApi = { login, getUserInfo, logout }

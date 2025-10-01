@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { useForm } from "@/hooks/useForm"
-import { login } from "@/service/user"
+import { userApi } from "@/api/service/user"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
@@ -48,7 +48,7 @@ const { form, errors, validate } = useForm({
 
 const handleLogin = async () => {
   try {
-    const { data: res } = await login(form)
+    const { data: res } = await userApi.login(form)
     localStorage.setItem("token", "" + res.data?.token)
     router.push("/")
   } catch (error) {

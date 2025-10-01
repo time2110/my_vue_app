@@ -17,9 +17,11 @@ const setupPageTitleGuard = (router: Router) => {
 const setupPermissionGuard = (router: Router) => {
   const userStore = useUserStore()
   router.beforeEach((to, _from, next) => {
+    console.log(userStore.isAuthenticated)
+
     // 初始化用户状态（如从 localStorage 恢复 token）
-    if (!userStore.token) {
-      userStore.initialize()
+    if (!userStore.isAuthenticated) {
+      userStore.init()
     }
     const requiresAuth = to.meta.requiresAuth as boolean
 

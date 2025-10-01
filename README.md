@@ -4,6 +4,7 @@
 
 # 目录
 
+```
 src/
 ├── api/ # 请求封装
 │ └── request.ts # axios 实例 拦截器
@@ -34,3 +35,4 @@ src/
 │ │ └── Login.vue # 登录页面
 ├── App.vue
 └── main.ts
+```
