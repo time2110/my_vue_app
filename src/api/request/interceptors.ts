@@ -1,5 +1,4 @@
 // src/utils/request/interceptors.ts
-import { ENV } from "@/constants/env"
 import { getCsrfToken } from "@/utils/auth/csrf"
 import { getAccessToken } from "@/utils/auth/token-storage"
 import {
@@ -22,6 +21,8 @@ import {
 export const setupRequestInterceptors = (service: AxiosInstance) => {
   service.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+      console.log("Request Config:", config)
+
       // 1. 安全获取配置
       const safeConfig = getSafeConfig(config) as InternalAxiosRequestConfig
 
@@ -33,36 +34,13 @@ export const setupRequestInterceptors = (service: AxiosInstance) => {
         }
       }
 
-      // 3. 生产环境防御性处理
-      if (ENV.VITE_APP_ENV === "production") {
-        // 防止调试参数泄露
-        if (safeConfig.params) {
-          ;["_debug", "mock", "inspect"].forEach((param) => {
-            if (param in safeConfig.params) {
-              delete safeConfig.params[param]
-            }
-          })
-        }
-
-        // 防止敏感数据上送
-        if (safeConfig.data) {
-          const sensitiveFields = ["password", "passwd", "pwd"]
-          sensitiveFields.forEach((field) => {
-            if (safeConfig.data[field]) {
-              console.error(`[Security] Sensitive field detected: ${field}`)
-              safeConfig.data[field] = "******"
-            }
-          })
-        }
-      }
-
-      // 4. ✅ 添加 Bearer Token（使用 set 方法）
+      // 3. ✅ 添加 Bearer Token（使用 set 方法）
       const accessToken = getAccessToken()
       if (accessToken && !safeConfig.skipAuth) {
         safeConfig.headers.set("Authorization", `Bearer ${accessToken}`)
       }
 
-      // 5. ✅ 注入CSRF Token（使用 set 方法）
+      // 4. ✅ 注入CSRF Token（使用 set 方法）
       if (
         !["GET", "HEAD", "OPTIONS"].includes(
           safeConfig.method?.toUpperCase() || ""

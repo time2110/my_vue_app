@@ -2,7 +2,7 @@
 import {
   setupRequestInterceptors,
   setupResponseInterceptors,
-} from "./interceptors"
+} from "@/api/request/interceptors"
 
 import { ENV } from "@/constants/env"
 import axios from "axios"

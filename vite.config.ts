@@ -33,6 +33,17 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
       open: mode === "development", // 开发环境自动打开浏览器
+      proxy: {
+        // 配置代理
+        "/api": {
+          target: "http://localhost:8080",
+          changeOrigin: true,
+          rewrite: (path: string) => {
+            const newPath = path.replace(/^\/api/, "")
+            return newPath
+          },
+        },
+      },
     },
     build: {
       sourcemap: mode !== "production", // 非生产环境生成 sourcemap

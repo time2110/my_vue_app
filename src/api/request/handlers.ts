@@ -78,7 +78,6 @@ export const handleClientError = async (
       // 在生产环境中避免记录详细的数据内容
       ...(import.meta.env.DEV && { data: config.data }),
     })
-    console.log(import.meta.env.DEV, error.response)
 
     switch (status) {
       case 400:

@@ -1,11 +1,11 @@
 // src/service/user.ts
 
-import request from "../request"
-import type { ApiResponse } from "../request/types"
+import request from "@/api/request"
+import type { ApiResponse } from "@/api/request/types"
 
 // 登录参数
 export interface LoginParams {
-  username: string
+  account: string
   password: string
 }
 
@@ -13,7 +13,6 @@ export interface LoginParams {
 export interface LoginResponse {
   token: string
   username: string
-  name: string
 }
 
 // 用户信息
@@ -25,17 +24,17 @@ export interface UserInfo {
 
 // 登录 API
 function login(params: LoginParams) {
-  return request.post<ApiResponse<LoginResponse>>("/user/login", params)
+  return request.post<ApiResponse<LoginResponse>>("/users/login", params)
 }
 
 // 获取用户信息
 function getUserInfo() {
-  return request.get<ApiResponse<UserInfo>>("/user/info")
+  return request.get<ApiResponse<UserInfo>>("/users/info")
 }
 
 // 登出 API
 function logout() {
-  return request.post<ApiResponse<null>>("/user/logout")
+  return request.post<ApiResponse<null>>("/users/logout")
 }
 
 export const userApi = { login, getUserInfo, logout }

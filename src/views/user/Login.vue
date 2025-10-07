@@ -9,8 +9,8 @@
       class="demo-ruleForm">
       <el-form-item
         label="账号"
-        :error="errors.username">
-        <el-input v-model="form.username" />
+        :error="errors.account">
+        <el-input v-model="form.account" />
       </el-form-item>
       <el-form-item
         label="密码"
@@ -29,19 +29,19 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from "@/hooks/useForm"
 import { userApi } from "@/api/service/user"
+import { useForm } from "@/hooks/useForm"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
 
 const { form, errors, validate } = useForm({
   initialValues: {
-    username: "admin",
+    account: "admin",
     password: "123456",
   },
   rules: {
-    username: [{ required: true, message: "请输入账号" }],
+    account: [{ required: true, message: "请输入账号" }],
     password: [{ required: true, message: "请输入密码" }],
   },
 })
@@ -52,15 +52,13 @@ const handleLogin = async () => {
     localStorage.setItem("token", "" + res.data?.token)
     router.push("/")
   } catch (error) {
-    console.error("登录失败:", error)
+    // console.error("登录失败:", error)
   }
 }
 const onSubmit = async () => {
   const valid = await validate()
 
   if (valid) {
-    // ElMessage.success("提交成功！")
-    console.log("表单数据:", form)
     handleLogin()
   }
 }
