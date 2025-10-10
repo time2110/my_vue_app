@@ -23,7 +23,7 @@ export const handleNetworkError = (
         // 未授权，可能需要重新登录
         console.warn("Unauthorized access - redirect to login")
         // 401 未认证处理（核心：Token 刷新机制）
-
+        window.location.href = "/login"
         break
       case 403:
         // 禁止访问

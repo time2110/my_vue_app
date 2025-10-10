@@ -1,5 +1,4 @@
 // src/utils/request/interceptors.ts
-import { getCsrfToken } from "@/utils/auth/csrf"
 import { getAccessToken } from "@/utils/auth/token-storage"
 import {
   AxiosHeaders,
@@ -46,10 +45,10 @@ export const setupRequestInterceptors = (service: AxiosInstance) => {
           safeConfig.method?.toUpperCase() || ""
         )
       ) {
-        const csrfToken = getCsrfToken()
-        if (csrfToken) {
-          safeConfig.headers.set("X-CSRF-TOKEN", csrfToken)
-        }
+        // const csrfToken = getCsrfToken()
+        // if (csrfToken) {
+        //   safeConfig.headers.set("X-CSRF-TOKEN", csrfToken)
+        // }
       }
 
       return safeConfig

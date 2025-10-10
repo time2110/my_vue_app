@@ -12,13 +12,16 @@ export interface LoginParams {
 // 登录响应
 export interface LoginResponse {
   token: string
-  username: string
 }
 
 // 用户信息
 export interface UserInfo {
-  id: number
+  id: number | null
   name: string
+  email: string
+  phone: string
+  avatar: string
+  permissions: string[]
   roles: string[]
 }
 

@@ -32,7 +32,7 @@ const routes: RouteRecordRaw[] = [
     meta: { title: "页面不存在" },
   },
   {
-    path: "/Login",
+    path: "/login",
     name: "Login",
     component: () => import("@/views/user/Login.vue"),
     meta: { title: "登录" },
